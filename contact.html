@@ -74,7 +74,7 @@
               >
                 <p class="mb-0">
                   <a
-                    href="#"
+                    href="contact.html"
                     class="btn py-2 px-3 btn-primary d-flex align-items-center justify-content-center"
                   >
                     <span>Apply now</span>
@@ -153,21 +153,28 @@
           <div class="col-md-3 d-flex">
             <div class="bg-light align-self-stretch box p-4 text-center">
               <h3 class="mb-4">Address</h3>
-              <p>198 West 21th Street, Suite 721 New York NY 10016</p>
+              <p>
+                Monastery Rd, Karikkamuri, Shenoys, Kochi, Kerala 682011 INDIA
+              </p>
             </div>
           </div>
           <div class="col-md-3 d-flex">
             <div class="bg-light align-self-stretch box p-4 text-center">
               <h3 class="mb-4">Contact Number</h3>
-              <p><a href="tel://1234567920">+ 1235 2355 98</a></p>
+
+              <p>
+                <a href="tel://+91-9744124762">+91- 9744124762</a>
+                <br />
+                <a href="tel://+44-7438872304">+44-7438872304</a>
+              </p>
             </div>
           </div>
           <div class="col-md-3 d-flex">
             <div class="bg-light align-self-stretch box p-4 text-center">
               <h3 class="mb-4">Email Address</h3>
               <p>
-                <a href="mailto:info@yoursite.com"
-                  >contact@growwellguidance.com</a
+                <a href="mailto:sanjay@growwellguidance.com"
+                  >sanjay@growwellguidance.com</a
                 >
               </p>
             </div>
@@ -189,6 +196,7 @@
             <form action="#">
               <div class="form-group">
                 <input
+                  id="Name"
                   type="text"
                   class="form-control"
                   placeholder="Your Name"
@@ -196,18 +204,24 @@
               </div>
               <div class="form-group">
                 <input
-                  type="text"
+                  id="Email"
+                  type="email"
                   class="form-control"
                   placeholder="Your Email"
                 />
               </div>
               <div class="form-group">
-                <input type="text" class="form-control" placeholder="Subject" />
+                <input
+                  type="text"
+                  id="Subject"
+                  class="form-control"
+                  placeholder="Subject"
+                />
               </div>
               <div class="form-group">
                 <textarea
                   name=""
-                  id=""
+                  id="Message"
                   cols="30"
                   rows="7"
                   class="form-control"
@@ -216,9 +230,10 @@
               </div>
               <div class="form-group">
                 <input
-                  type="submit"
+                  id="clicktosend"
                   value="Send Message"
                   class="btn btn-primary py-3 px-5"
+                  onClick="SendMail()"
                 />
               </div>
             </form>
@@ -240,9 +255,9 @@
                 <ul>
                   <li>
                     <span class="icon icon-map-marker"></span
-                    ><span class="text"
-                      >203 Fake St. Mountain View, San Francisco, California,
-                      USA</span
+                    ><span class="text">
+                      Monastery Rd, Karikkamuri, Shenoys, Kochi, Kerala 682011
+                      INDIA</span
                     >
                   </li>
                   <li>
@@ -367,5 +382,27 @@
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBVWaKrjvy3MaE7SQ74_uJiULgl1JY0H2s&sensor=false"></script>
     <script src="js/google-map.js"></script>
     <script src="js/main.js"></script>
+    <script src="https://smtpjs.com/v3/smtp.js"></script>
+    <script>
+      // $("#clicktosend").click(function name(params) {});
+
+      function SendMail() {
+        if (
+          $("#Email").val() != "" &&
+          $("#Subject").val() != "" &&
+          $("#Message").val() != ""
+        ) {
+          Email.send({
+            SecureToken: "c3895d27-7a8b-48b8-add5-374e536a9076",
+            To: "sanjay@growwellguidance.com",
+            From: $("#Email").val(),
+            Subject: $("#Subject").val(),
+            Body: $("#Message").val(),
+          }).then((message) => alert("Mail Send succesfully"));
+        } else {
+          alert("Please fill the details");
+        }
+      }
+    </script>
   </body>
 </html>
